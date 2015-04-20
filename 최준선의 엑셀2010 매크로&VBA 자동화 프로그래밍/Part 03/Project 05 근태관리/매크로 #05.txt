@@ -1,0 +1,67 @@
+Sub 근태내역저장()
+
+    Dim r근태관리대장 As Range
+    Dim cell As Range
+    Dim y As Integer
+    Dim i연 As Integer
+    Dim i월 As Integer
+    Dim i마지막일 As Integer
+    Dim r근태내역 As Range
+    Dim v집계() As Variant
+        
+    If MsgBox("기록이 끝났으면 저장할까요?", vbQuestion + vbYesNo, "기록") = vbYes Then
+    
+        i연 = Range("연").Value
+        i월 = Range("월").Value
+        i마지막일 = Day(DateSerial(i연, i월 + 1, 1) - 1)
+        Set r근태관리대장 = Range("근태관리대장[#All]")
+        
+        If 기존내역존재(i연, i월) = True Then
+            If MsgBox("기존 내역이 존재합니다.  덮어 씌울까요?", vbQuestion + vbYesNo) = vbYes Then
+                Call 기존내역삭제(i연, i월)
+            Else
+                MsgBox "근태내역을 확인하고 다시 작업해 주세요!"
+                Exit Sub
+            End If
+        End If
+        
+        For Each cell In r근태관리대장.Columns(2).Cells
+        
+            ReDim v집계(1 To 8)
+        
+            If cell.Row > r근태관리대장.Cells(1).Row Then
+                
+                For y = 1 To i마지막일
+                    
+                    Select Case cell.Offset(, y).Value
+                        Case "●": v집계(5) = v집계(5) + 1
+                        Case "▲": v집계(6) = v집계(6) + 1
+                        Case "■": v집계(7) = v집계(7) + 1
+                        Case "◎": v집계(8) = v집계(8) + 1
+                        Case Else
+                            If Weekday(DateSerial(i연, i월, r근태관리대장.Cells(1, y + 2)), vbMonday) <= 5 Then
+                                v집계(5) = v집계(5) + 1
+                            End If
+                    End Select
+                    
+                Next
+        
+                v집계(1) = cell.Offset(, -1).Value
+                v집계(2) = cell.Value
+                v집계(3) = i연
+                v집계(4) = i월
+        
+                Set r근태내역 = Worksheets("근태내역").Cells(Rows.Count, 1).End(xlUp)
+                If Len(r근태내역.Value) > 0 Then Set r근태내역 = r근태내역.Offset(1)
+                
+                r근태내역.Resize(, 8).Value = v집계
+                
+            End If
+        
+        Next
+        
+        Range("근태관리대장[#Data]").Columns("C:AI").ClearContents
+        
+    End If
+    
+End Sub

@@ -1,0 +1,15 @@
+Function 可记钎犬牢() As Boolean
+
+    Dim yn可记 As Boolean
+    
+    yn可记 = False
+
+    If ActiveSheet.Shapes("opt林6老").ControlFormat.Value = xlOn Then
+        If 林富急琶夸老荐 = 1 Then yn可记 = True
+    Else
+        If 林富急琶夸老荐 = 2 Then yn可记 = True
+    End If
+
+    可记钎犬牢 = yn可记
+
+End Function

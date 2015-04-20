@@ -1,0 +1,31 @@
+Sub 급여명세서발송(r급여대장 As Range, r대상자 As Range)
+
+    Dim 셀 As Range, 항목 As Range, 열머리글 As Range
+    Dim y As Integer
+    
+    For Each 셀 In r대상자.Columns(1).Cells
+    
+        If 셀.Row > 1 Then
+    
+            For y = 1 To r급여대장.Columns.Count
+    
+                Set 항목 = 셀.Offset(, y - 1)
+                Set 열머리글 = r급여대장.Cells(1, 항목.Column)
+                
+                On Error Resume Next
+                    ThisWorkbook.Names(열머리글.Value).RefersToRange.Value = 항목.Value
+                On Error GoTo 0
+            
+            Next
+        
+            ' 1단계 : 파일생성
+            
+            ' 2단계 : 이메일 발송
+                        
+            ' 3단계 : 파일 삭제
+                
+        End If
+        
+    Next
+
+End Sub

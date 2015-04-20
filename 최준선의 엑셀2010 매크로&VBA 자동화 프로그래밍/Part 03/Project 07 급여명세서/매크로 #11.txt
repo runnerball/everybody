@@ -1,0 +1,43 @@
+Sub 급여명세서발송(r급여대장 As Range, r대상자 As Range)
+
+    Dim 셀 As Range, 항목 As Range, 열머리글 As Range
+    Dim y As Integer
+    Dim s사원이름 As String, s파일 As String
+    Dim s이메일주소 As String, s제목 As String, s본문 As String
+    
+    For Each 셀 In r대상자.Columns(1).Cells
+    
+        If 셀.Row > 1 Then
+    
+            For y = 1 To r급여대장.Columns.Count
+    
+                Set 항목 = 셀.Offset(, y - 1)
+                Set 열머리글 = r급여대장.Cells(1, 항목.Column)
+                
+                On Error Resume Next
+                    ThisWorkbook.Names(열머리글.Value).RefersToRange.Value = 항목.Value
+                On Error GoTo 0
+            
+            Next
+        
+            ' 1단계 : 파일생성
+            s사원이름 = 셀.Offset(, 3).Value & 셀.Offset(, 2).Value
+            s파일 = ThisWorkbook.Path & "\" & s사원이름 & ".xlsx"
+            
+            Call 급여명세서파일만들기(s파일)
+            
+            ' 2단계 : 이메일 발송
+            s이메일주소 = 셀.Offset(, 4).Value
+            s제목 = s사원이름 & "님, 급여명세서입니다."
+            s본문 = "한 달동안 수고하셨습니다."
+            
+            메일발송 이메일:=s이메일주소, 제목:=s제목, 본문:=s본문, 첨부파일:=s파일
+                        
+            ' 3단계 : 파일 삭제
+            Kill s파일
+            
+        End If
+        
+    Next
+
+End Sub

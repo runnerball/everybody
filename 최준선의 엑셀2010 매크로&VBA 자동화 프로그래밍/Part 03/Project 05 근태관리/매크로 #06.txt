@@ -1,0 +1,5 @@
+Private Sub Worksheet_Activate()
+
+    ActiveSheet.PivotTables(1).PivotCache.Refresh
+
+End Sub

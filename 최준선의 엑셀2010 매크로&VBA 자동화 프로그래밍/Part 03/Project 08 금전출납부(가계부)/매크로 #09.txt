@@ -1,0 +1,40 @@
+Sub 만년달력()
+    
+    Dim i연도 As Integer, i월 As Byte
+    Dim i요일 As Byte
+    Dim i행 As Integer
+    Dim d날짜 As Date
+    Dim r셀 As Range
+        
+    i연도 = Range("연도").Value
+    i월 = Range("월").Value
+    
+    Range("A6:G23").ClearContents
+    
+    i행 = 6
+    
+    d날짜 = DateSerial(i연도, i월, 1)
+        
+    Do
+                
+        i요일 = Weekday(d날짜)
+        Set r셀 = Cells(i행, i요일)
+            
+            r셀.Value = Day(d날짜)
+    
+        Select Case i요일
+        
+            Case 1  ' 일
+                r셀.Font.ColorIndex = 3
+            Case 7  ' 토
+                r셀.Font.ColorIndex = 5
+                i행 = i행 + 3
+            Case Else
+                r셀.Font.ColorIndex = 1
+        End Select
+    
+        d날짜 = d날짜 + 1
+    
+    Loop While i월 = CInt(Format(d날짜, "m"))
+    
+End Sub

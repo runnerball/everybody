@@ -1,0 +1,16 @@
+Sub 조건입력()
+
+    Range("B7:C7").ClearContents
+    
+    Select Case Range("Template").Value
+        Case "판매일보"
+            Range("_1stCriteria").Value = Format(Date - 1, "yyyy-mm-dd")
+        Case "판매주보"
+            Range("_1stCriteria").Value = ">=" & Format(Date - 7, "yyyy-mm-dd")
+            Range("_2ndCriteria").Value = "<=" & Format(Date - 1, "yyyy-mm-dd")
+        Case "판매월보"
+            Range("_1stCriteria").Value = ">=" & Format(DateSerial(Year(Date), Month(Date) - 1, 1), "yyyy-mm-dd")
+            Range("_2ndCriteria").Value = "<=" & Format(DateSerial(Year(Date), Month(Date), 0), "yyyy-mm-dd")
+    End Select
+
+End Sub

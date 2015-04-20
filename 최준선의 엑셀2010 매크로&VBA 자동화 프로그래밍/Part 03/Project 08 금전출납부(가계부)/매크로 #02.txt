@@ -1,0 +1,38 @@
+Sub 출납기록()
+
+    Dim r입력위치 As Range
+    Dim d입력일 As Date
+    Dim i개수 As Integer
+    Dim i행번호 As Integer
+    Dim i표시작행 As Integer
+    
+    i표시작행 = Range("금전출납부").Cells(1).Row
+    d입력일 = Range("A5").Value
+    i개수 = WorksheetFunction.CountIf(Range("금전출납부[일자]"), ">" & d입력일)
+    
+    If i개수 > 0 Then
+    
+        i행번호 = Range("금전출납부[일자]").Rows.Count - i개수 + i표시작행
+        Cells(i행번호, "A").Resize(1, 6).Insert
+        
+        Set r입력위치 = Cells(i행번호, "A")
+        
+    Else
+    
+        Set r입력위치 = Cells(Rows.Count, "A").End(xlUp)
+        
+        If Sheet1.ListObjects("금전출납부").ListRows.Count > 0 Then
+            Set r입력위치 = r입력위치.Offset(1)
+        End If
+    
+    End If
+    
+    With r입력위치
+        .Offset(, 0).Value = Range("A5").Value
+        .Offset(, 1).Value = Range("B5").Value
+        .Offset(, 2).Value = Range("C5").Value
+        .Offset(, 3).Value = Range("D5").Value
+        .Offset(, 5).Value = Range("E5").Value
+    End With
+
+End Sub

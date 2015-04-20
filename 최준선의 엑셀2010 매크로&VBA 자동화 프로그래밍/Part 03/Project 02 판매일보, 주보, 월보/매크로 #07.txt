@@ -1,0 +1,5 @@
+Sub 서식인쇄()
+
+    Worksheets("서식").PrintOut Preview:=True
+
+End Sub

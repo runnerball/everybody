@@ -1,0 +1,9 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    If Not Intersect(Target, Range("연")) Is Nothing Or Not Intersect(Target, Range("월")) Is Nothing Then
+    
+        직원표시하기
+        
+    End If
+
+End Sub

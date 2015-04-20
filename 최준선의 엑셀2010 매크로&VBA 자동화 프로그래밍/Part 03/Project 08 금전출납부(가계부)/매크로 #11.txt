@@ -1,0 +1,17 @@
+Sub 이번달()
+
+    Range("연도").Value = Year(Date)
+    Range("월").Value = Month(Date)
+    
+    Call 만년달력
+
+End Sub
+
+Sub 지난달()
+
+    Range("연도").Value = Year(Date - Day(Date))
+    Range("월").Value = Month(Date - Day(Date))
+
+    Call 만년달력
+
+End Sub

@@ -1,0 +1,55 @@
+Sub 만년달력()
+    
+    Dim i연도 As Integer, i월 As Byte
+    Dim i요일 As Byte
+    Dim i행 As Integer
+    Dim d날짜 As Date
+    Dim r셀 As Range
+    Dim i이월 As Long
+    Dim i당일수입 As Long, i수입 As Long
+    Dim i당일지출 As Long, i지출 As Long
+    
+    i연도 = Range("연도").Value
+    i월 = Range("월").Value
+    
+    Range("A6:G23").ClearContents
+    
+    i행 = 6
+    
+    d날짜 = DateSerial(i연도, i월, 1)
+        
+    Do
+                
+        i요일 = Weekday(d날짜)
+        i당일수입 = WorksheetFunction.SumIf(Range("금전출납부[일자]"), d날짜, Range("금전출납부[수입]"))
+        i수입 = i수입 + i당일수입
+        i당일지출 = WorksheetFunction.SumIf(Range("금전출납부[일자]"), d날짜, Range("금전출납부[지출]"))
+        i지출 = i지출 + i당일지출
+        i이월 = i이월 + WorksheetFunction.SumIfs(Range("금전출납부[수입]"), Range("금전출납부[일자]"), d날짜, Range("금전출납부[적요]"), "이월")
+        
+        Set r셀 = Cells(i행, i요일)
+            
+            r셀.Value = Day(d날짜)
+            r셀.Offset(1).Value = i당일수입
+            r셀.Offset(2).Value = i당일지출
+        
+        Select Case i요일
+        
+            Case 1  ' 일
+                r셀.Font.ColorIndex = 3
+            Case 7  ' 토
+                r셀.Font.ColorIndex = 5
+                i행 = i행 + 3
+            Case Else
+                r셀.Font.ColorIndex = 1
+        End Select
+    
+        d날짜 = d날짜 + 1
+    
+    Loop While i월 = CInt(Format(d날짜, "m"))
+    
+    Range("이월").Value = i이월
+    Range("수입").Value = i수입 - i이월
+    Range("지출").Value = i지출
+
+End Sub

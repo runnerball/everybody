@@ -1,0 +1,31 @@
+Function 분류항목() As String
+
+    Dim r분류 As Range
+    Dim r고유 As Range
+    Dim cell As Range
+    Dim sTmp As String
+    
+    Set r분류 = Range("제품[분류]")
+    Set r고유 = Worksheets("제품").Range("L1")
+    
+    r분류.Copy r고유
+    
+    Set r고유 = r고유.CurrentRegion
+    
+    r고유.RemoveDuplicates Columns:=1, Header:=xlNo
+    Set r고유 = r고유.CurrentRegion
+
+    With r고유
+        .Sort Key1:=.Columns(1), Order1:=xlAscending
+        
+        For Each cell In .Cells
+            sTmp = IIf(sTmp = "", cell.Value, sTmp & "," & cell.Value)
+        Next
+    
+        .Delete Shift:=xlUp
+    
+    End With
+    
+    분류항목 = sTmp
+
+End Function

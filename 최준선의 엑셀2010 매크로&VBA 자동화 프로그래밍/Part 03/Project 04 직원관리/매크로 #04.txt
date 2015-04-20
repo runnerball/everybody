@@ -1,0 +1,23 @@
+Private Sub btn신규_Click()
+
+    Dim ctl As Control
+    
+    For Each ctl In UserForm1.Controls
+    
+        If ctl.Tag = "입력" Then
+            If TypeName(ctl) = "TextBox" Or TypeName(ctl) = "ComboBox" Then
+                ctl.Value = ""
+            ElseIf TypeName(ctl) = "Frame" Then
+                With ctl
+                    .Controls(0).Value = False
+                    .Controls(1).Value = False
+                End With
+            End If
+        End If
+    
+    Next
+
+    img사진.Picture = LoadPicture(Filename:=ThisWorkbook.Path & "\Picture\Default.jpg")
+    txt사번.Value = Cells(Rows.Count, 2).End(xlUp).Value + 1
+
+End Sub

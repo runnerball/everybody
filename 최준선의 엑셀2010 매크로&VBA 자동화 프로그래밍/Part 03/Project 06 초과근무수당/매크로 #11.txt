@@ -1,0 +1,9 @@
+Function 근무시간인정(근무시간 As Single, 삼십분단위 As Integer) As Single
+
+    If 삼십분단위 = xlOn Then
+        근무시간인정 = Int(근무시간 / 0.5) * 0.5
+    Else
+        근무시간인정 = Int(근무시간)
+    End If
+
+End Function

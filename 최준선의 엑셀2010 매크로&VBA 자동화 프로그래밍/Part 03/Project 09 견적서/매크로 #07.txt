@@ -1,0 +1,6 @@
+Private Sub ListBox1_Click()
+
+    ActiveCell.Value = ListBox1.Value
+    Application.OnTime Now() + TimeSerial(0, 0, 1), "Æû´Ý±â"
+
+End Sub

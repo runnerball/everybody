@@ -1,0 +1,5 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    If Not Intersect(Range("_1stCriteria"), Target) Is Nothing Then 제품추출및정렬
+
+End Sub

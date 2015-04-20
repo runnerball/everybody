@@ -1,0 +1,16 @@
+Sub 모두발송()
+
+    Dim r조건 As Range
+    
+    Set r조건 = Range("조건표")
+        
+        r조건.Offset(1).Resize(1, 3).ClearContents
+    
+    With Worksheets("급여대장")
+        If .FilterMode = True Then
+            .ShowAllData
+            .ListObjects("급여대장").TableStyle = "TableStyleMedium2"
+        End If
+    End With
+    
+End Sub

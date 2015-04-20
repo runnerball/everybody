@@ -1,0 +1,14 @@
+Sub 차트위치조정()
+
+    Dim r차트영역 As Range
+
+    Set r차트영역 = Range("차트영역").MergeArea
+    
+    With ActiveSheet.ChartObjects(1)
+        .Height = r차트영역.Height * 0.9
+        .Width = r차트영역.Width * 0.9
+        .Left = r차트영역.Cells(1).Left + 30
+        .Top = r차트영역.Cells(1).Top + 15
+    End With
+
+End Sub

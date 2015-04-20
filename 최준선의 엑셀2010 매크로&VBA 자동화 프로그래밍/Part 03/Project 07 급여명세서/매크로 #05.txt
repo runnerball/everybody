@@ -1,0 +1,18 @@
+Sub 급여명세서초기화()
+
+    Dim 이름 As Name
+    Dim r이름위치 As Range
+    
+    For Each 이름 In ThisWorkbook.Names
+    
+        Set r이름위치 = 이름.RefersToRange
+    
+        If r이름위치.Parent.Name = "급여명세서" Then
+            r이름위치.Value = ""
+        End If
+    
+    Next
+    
+    Range("제목").Value = Format(Date, "m월") & " 급여명세서"
+
+End Sub

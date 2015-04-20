@@ -1,0 +1,30 @@
+Sub 의뢰자처리()
+
+    Dim s옵션단추 As String
+    Dim x As Integer
+    
+    s옵션단추 = ActiveSheet.Shapes(Application.Caller).TextFrame.Characters.Text
+
+    If s옵션단추 = "기존" Then
+    
+        ActiveSheet.Shapes("등록버튼").Visible = False
+
+        Names.Add "고객명", Range("고객[회사명]")
+        
+        On Error Resume Next
+            With Range("의뢰자").Validation
+                .Delete
+                .Add xlValidateList, , , "=고객명"
+            End With
+        On Error GoTo 0
+
+        For x = 1 To 6
+            Range("의뢰자").Offset(x).Formula = "=IFERROR(VLOOKUP(의뢰자, 고객, " & x + 1 & ", FALSE),"""")"
+        Next x
+        
+    Else
+    
+    
+    End If
+
+End Sub

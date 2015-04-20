@@ -1,0 +1,17 @@
+Sub 신규고객등록()
+
+    Dim r신규등록 As Range
+    
+    If Len(Range("의뢰자").Value) > 0 Then
+
+        Set r신규등록 = Worksheets("고객").Cells(Rows.Count, "A").End(xlUp)
+        
+        If Worksheets("고객").ListObjects("고객").ListRows.Count > 0 Then
+            Set r신규등록 = r신규등록.Offset(1)
+        End If
+        
+            r신규등록.Resize(, 7) = Application.Transpose(Range("의뢰자").Resize(7))
+    
+    End If
+
+End Sub

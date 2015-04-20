@@ -1,0 +1,6 @@
+Sub 견적서보기()
+
+    Worksheets("견적서").Visible = xlSheetVisible
+    Worksheets("견적서").Activate
+
+End Sub

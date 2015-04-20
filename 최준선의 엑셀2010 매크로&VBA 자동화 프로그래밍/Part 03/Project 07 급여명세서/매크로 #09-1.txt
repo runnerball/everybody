@@ -1,0 +1,24 @@
+Sub 皋老惯价(捞皋老 As String, 力格 As String, 夯巩 As String, 梅何颇老 As String)
+
+    Dim ol酒眶疯 As Object
+    Dim ol货皋老 As Object
+    
+    Set ol酒眶疯 = CreateObject("Outlook.Application")
+    Set ol货皋老 = ol酒眶疯.CreateItem(olMailItem)
+    
+        With ol货皋老
+        
+            .To = 捞皋老
+            .Subject = 力格
+            .Body = 夯巩
+            .Attachments.Add 梅何颇老
+            .Send
+        
+        End With
+
+    ol酒眶疯.Quit
+        
+    Set ol货皋老 = Nothing
+    Set ol酒眶疯 = Nothing
+    
+End Sub

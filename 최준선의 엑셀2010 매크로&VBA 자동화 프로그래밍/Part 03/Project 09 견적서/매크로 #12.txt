@@ -1,0 +1,15 @@
+Sub 견적서인쇄()
+
+    Dim i마지막페이지 As Integer
+
+    If MsgBox("팩스 표지를 인쇄하겠습니까?", vbYesNo, "인쇄 옵션") = vbYes Then
+        i마지막페이지 = 1
+    End If
+
+    With Worksheets("견적서")
+        .Visible = xlSheetVisible
+        .PrintOut From:=1, To:=(i마지막페이지 + 1)
+        .Visible = xlSheetVeryHidden
+    End With
+
+End Sub

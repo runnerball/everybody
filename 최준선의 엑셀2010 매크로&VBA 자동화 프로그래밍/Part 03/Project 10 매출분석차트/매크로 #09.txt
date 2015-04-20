@@ -1,0 +1,31 @@
+Sub X축레이블간격자동설정(r원본테이블 As Range)
+
+    Dim i표시간격 As Integer
+
+    With ActiveChart
+
+        Select Case r원본테이블.Columns(1).Rows.Count
+            Case Is < 10: i표시간격 = 1
+            Case Is < 20: i표시간격 = 3
+            Case Is < 30: i표시간격 = 7
+            Case Else: i표시간격 = Int(r원본테이블.Rows.Count / 6) + 1
+        End Select
+        
+        .Axes(xlCategory).CategoryType = xlCategoryScale
+        .Axes(xlCategory).TickLabelSpacing = i표시간격
+        .Axes(xlCategory).TickLabels.NumberFormatLocal = "m/d"
+    
+        If .SeriesCollection.Count = 1 And i표시간격 >= 3 Then
+    
+            .SeriesCollection(1).Trendlines.Add Type:=xlMovingAvg, Period:=i표시간격
+            With .SeriesCollection(1).Trendlines(1).Border
+                .Weight = xlThick
+                .LineStyle = xlContinuous
+                .ColorIndex = 3
+            End With
+    
+        End If
+
+    End With
+
+End Sub

@@ -1,0 +1,19 @@
+Dim ynNextStep As Boolean
+
+Sub Main()
+
+    ynNextStep = True
+
+    Call 데이터추출
+    Call 고유항목추출
+    
+    If ynNextStep = True Then
+    
+        Call 합계및정렬
+        Call 서식인쇄
+        
+        Range("Template").Activate
+
+    End If
+
+End Sub

@@ -1,0 +1,35 @@
+Sub 계산결과요약()
+
+    Dim r근태기록 As Range, r셀 As Range
+    Dim r요약 As Range, r찾은위치 As Range
+    
+    Set r근태기록 = Worksheets("근태기록").UsedRange.Columns(1)
+    Set r요약 = Worksheets("직원명부").Range("A1").CurrentRegion
+    
+    r요약.Offset(1, 3).Resize(r요약.Rows.Count - 1, r요약.Columns.Count - 3).ClearContents
+
+    For Each r셀 In r근태기록.Cells
+    
+        If r셀.Row > 1 Then
+        
+            Set r찾은위치 = r요약.Columns(1).Find(What:=r셀.Value)
+
+            If r찾은위치 Is Nothing Then
+                Set r찾은위치 = r요약.Cells(r요약.Rows.Count, 1).Offset(1)
+                    r찾은위치.Value = r셀.Value
+                    r찾은위치.Offset(, 1).Value = r셀.Offset(, 1).Value
+            End If
+
+            With r찾은위치
+                .Offset(, 3).Value = .Offset(, 3).Value + r셀.Offset(, 4).Value
+                .Offset(, 4).Value = .Offset(, 4).Value + r셀.Offset(, 5).Value
+                .Offset(, 5).Value = .Offset(, 5).Value + r셀.Offset(, 6).Value
+            End With
+        
+            r셀.Offset(, 4).Resize(1, 3).ClearContents
+        
+        End If
+
+    Next
+
+End Sub

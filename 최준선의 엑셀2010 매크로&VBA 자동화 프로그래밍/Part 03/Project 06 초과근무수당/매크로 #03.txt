@@ -1,0 +1,19 @@
+Sub opt주6일_Click()
+
+    Call 주말선택초기화
+
+    With ActiveSheet
+        .Shapes("chk홀수주휴무").ControlFormat.Value = xlOff
+        .Shapes("day일").ControlFormat.Value = xlOn
+    End With
+
+End Sub
+
+Sub opt격주_Click()
+
+    Call 주말선택초기화
+    
+    ActiveSheet.Shapes("day토").ControlFormat.Value = xlOn
+    ActiveSheet.Shapes("day일").ControlFormat.Value = xlOn
+
+End Sub

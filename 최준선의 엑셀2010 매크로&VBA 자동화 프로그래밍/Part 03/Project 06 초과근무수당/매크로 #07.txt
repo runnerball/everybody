@@ -1,0 +1,15 @@
+Sub 초과근무시간계산()
+
+    Dim sMsg As String
+
+    If 옵션표확인 = False Then
+        sMsg = "옵션표의 근무형태와 주말 선택 옵션이 맞지 않으니 확인해 주세요!"
+        MsgBox sMsg, vbCritical + vbOKOnly, "옵션표"
+        Exit Sub
+    End If
+
+    
+    
+    
+
+End Sub

@@ -1,0 +1,6 @@
+Sub 새견적서쓰기()
+    
+    Range("의뢰자").Resize(7, 4).ClearContents
+    Range("견적내역시작셀").Resize(20, 9).ClearContents
+
+End Sub

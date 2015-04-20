@@ -1,0 +1,15 @@
+Sub 주말선택초기화()
+
+    Dim o확인란 As Shape
+
+    For Each o확인란 In ActiveSheet.Shapes
+    
+        If Left(o확인란.Name, 3) = "day" Then
+    
+            o확인란.ControlFormat.Value = xlOff
+            
+        End If
+    
+    Next
+
+End Sub

@@ -1,0 +1,26 @@
+Sub 이메일발송()
+
+    Dim r급여대장 As Range, r대상자 As Range
+    
+    Set r급여대장 = Range("급여대장[#All]")
+    
+    If ActiveSheet.Shapes("opt조건").ControlFormat.Value = xlOn Then
+        Call 필터적용
+        Set r급여대장 = r급여대장.SpecialCells(Type:=xlCellTypeVisible)
+    End If
+    
+    Call 급여명세서초기화
+    
+    If r급여대장.Areas.Count > 1 Then
+    
+    
+    
+    Else
+    
+    
+    
+    End If
+    
+    Call 급여명세서초기화
+
+End Sub

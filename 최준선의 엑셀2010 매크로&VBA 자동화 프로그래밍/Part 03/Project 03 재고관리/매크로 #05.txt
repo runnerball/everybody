@@ -1,0 +1,37 @@
+Sub 입출고내역기록()
+
+    Dim r입력 As Range
+    Dim r쓰기 As Range
+    Dim cell As Range
+    
+    Set r입력 = Range("_1stCopyTo").CurrentRegion
+    
+    If WorksheetFunction.CountA(r입력.Columns("B:D")) > 3 Then
+    
+        Set r쓰기 = Worksheets("입출고").Cells(Rows.Count, 1).End(xlUp).Offset(1)
+        
+            For Each cell In r입력.Columns("B:D").Cells
+            
+                With cell
+            
+                    If IsNumeric(.Value) And .Value > 0 Then
+                    
+                        r쓰기.Resize(1, 5) = Array(r쓰기.Offset(-1).Value + 1, Cells(.Row, "B").Value, Cells(9, .Column).Value, .Value, Date)
+                    
+                        Set r쓰기 = r쓰기.Offset(1)
+                        
+                    End If
+            
+                End With
+            
+            Next
+            
+        Intersect(r입력.Offset(2), r입력.Columns("B:D")).ClearContents
+        
+    Else
+    
+        MsgBox "입력된 입출고 내역이 존재하지 않습니다."
+        
+    End If
+
+End Sub

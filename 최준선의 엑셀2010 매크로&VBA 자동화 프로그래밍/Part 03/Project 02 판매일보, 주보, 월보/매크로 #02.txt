@@ -1,0 +1,5 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    If Not Intersect(Target, Range("Template")) Is Nothing Then 조건입력
+
+End Sub

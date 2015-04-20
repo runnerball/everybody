@@ -1,0 +1,70 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim i행번호 As Integer
+    Dim i열번호 As Integer
+    Dim i표시작행 As Integer
+    Dim i표마지막행 As Integer
+    Dim i이전잔액 As Long
+    Dim i수입 As Long
+    Dim i지출 As Long
+    Dim i As Integer
+    
+    i표시작행 = Range("금전출납부").Cells(1).Row
+    i표마지막행 = Range("금전출납부").Cells(Range("금전출납부").Rows.Count, "A").Row
+        
+    If Target.Count = 1 Then
+    
+        i행번호 = Target.Row
+        i열번호 = Target.Column
+    
+        If i행번호 >= i표시작행 And i행번호 <= i표마지막행 Then
+    
+            Application.EnableEvents = False
+    
+                i이전잔액 = IIf(i행번호 = i표시작행, 0, Cells(i행번호 - 1, "E").Value)
+                i수입 = Cells(i행번호, "C").Value
+                i지출 = Cells(i행번호, "D").Value
+                
+                Select Case i열번호
+                    Case 2
+                    
+                        If i행번호 > i표시작행 And Target.Value = "이월" Then
+                            
+                            Cells(i행번호, "C").Value = i이전잔액
+                            Cells(i행번호, "E").Value = i이전잔액
+                                
+                        End If
+                        
+                    Case 3, 4
+                    
+                        Cells(i행번호, "E").Value = i이전잔액 + i수입 - i지출
+                        
+                        i = 1
+                        
+                        Do While i행번호 + i <= i표마지막행
+                        
+                            i이전잔액 = Cells(i행번호 + i - 1, "E").Value
+                            i수입 = Cells(i행번호 + i, "C").Value
+                            i지출 = Cells(i행번호 + i, "D").Value
+                        
+                            If Cells(i행번호 + i, "B").Value = "이월" Then
+                                Cells(i행번호 + i, "C").Value = i이전잔액
+                                Cells(i행번호 + i, "E").Value = i이전잔액
+                            Else
+                                Cells(i행번호 + i, "E").Value = i이전잔액 + i수입 - i지출
+                            End If
+                            i = i + 1
+                        Loop
+                    
+                    Case 5
+                    
+                    
+                End Select
+            
+            Application.EnableEvents = True
+        
+        End If
+        
+    End If
+
+End Sub

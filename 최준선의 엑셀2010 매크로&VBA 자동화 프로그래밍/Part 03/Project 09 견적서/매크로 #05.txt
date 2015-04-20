@@ -1,0 +1,20 @@
+Private Sub UserForm_Initialize()
+
+    Dim r伎 As Range
+    Dim r力前 As Range
+    
+    ListBox1.Clear
+    
+    Set r力前 = Range("力前[力前疙]")
+        
+    For Each r伎 In r力前
+        
+        If r伎.Offset(, 1).Value = ActiveCell.Offset(, -2).Value Then
+            With ListBox1
+                .AddItem r伎.Value
+            End With
+        End If
+    
+    Next
+
+End Sub

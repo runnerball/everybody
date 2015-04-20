@@ -1,0 +1,30 @@
+Sub 차트원본테이블구성()
+
+    Dim d시작일 As Date
+    Dim d종료일 As Date
+    
+    Select Case ActiveSheet.Shapes(Application.Caller).TextFrame.Characters.Text
+    
+        Case "최근 일주일"
+            d시작일 = Date - 7
+            d종료일 = Date - 1
+        Case "보름"
+            d시작일 = Date - 14
+            d종료일 = Date - 1
+        Case "한달"
+            d시작일 = DateAdd("m", -1, Date)
+            d종료일 = Date - 1
+        Case "사용자 지정"
+            d시작일 = Range("사용자지정_시작일").Value
+            d종료일 = Range("사용자지정_종료일").Value
+    End Select
+            
+    Range("사용자지정_시작일").Value = d시작일
+    Range("사용자지정_종료일").Value = d종료일
+    
+    Range("시작일").Value = ">=" & d시작일
+    Range("종료일").Value = "<=" & d종료일
+    
+    
+    
+End Sub

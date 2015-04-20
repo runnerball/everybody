@@ -1,0 +1,33 @@
+Function 입력확인() As Boolean
+
+    Dim ctl As Control
+    Dim ynOK As Boolean
+    
+    ynOK = True
+    
+    For Each ctl In UserForm1.Controls
+    
+        If ctl.Tag = "입력" Then
+    
+            Select Case TypeName(ctl)
+                Case "TextBox", "ComboBox"
+                    If Len(ctl.Value) = 0 Then ynOK = False
+                Case "Frame"
+                    With ctl
+                        If .Controls(0).Value = False And .Controls(1).Value = False Then ynOK = False
+                    End With
+                Case Else
+            End Select
+            
+            If ynOK = False Then
+                ctl.SetFocus
+                Exit For
+            End If
+        
+        End If
+    
+    Next
+
+    입력확인 = ynOK
+
+End Function

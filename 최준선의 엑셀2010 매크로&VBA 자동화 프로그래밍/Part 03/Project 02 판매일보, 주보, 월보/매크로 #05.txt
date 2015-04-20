@@ -1,0 +1,6 @@
+Sub Main()
+
+	Call 데이터추출
+	Call 고유항목추출
+
+End Sub

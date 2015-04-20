@@ -1,0 +1,31 @@
+Private Sub btn저장_Click()
+
+    Dim r찾을범위 As Range
+    Dim r위치 As Range
+    Dim r마지막셀 As Range
+    
+    If 입력확인 = True Then
+
+        Set r마지막셀 = Cells(Rows.Count, 2)
+
+        If ynNew = True Then
+            Set r위치 = r마지막셀.End(xlUp).Offset(1)
+        Else
+            Set r찾을범위 = Range("b2", r마지막셀.End(xlUp))
+            Set r위치 = r찾을범위.Find(What:=Int(txt사번.Value))
+        End If
+       
+        If Not r위치 Is Nothing Then
+            
+            r위치.Resize(1, 7).Value = Array(Int(txt사번), txt이름.Value, cmb직위.Value, txt주민등록번호.Value, _
+                                                    IIf(opt남.Value, "남", "여"), Int(txt나이.Value), DateValue(txt생년월일.Value))
+        
+        End If
+        
+    Else
+        
+        MsgBox "값이 모두 입력되지 않았습니다."
+       
+    End If
+
+End Sub

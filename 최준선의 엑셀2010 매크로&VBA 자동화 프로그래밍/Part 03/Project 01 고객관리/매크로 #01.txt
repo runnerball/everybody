@@ -1,0 +1,18 @@
+Sub ÀÔ·Â()
+
+    Dim rNew As Range
+    
+    Set rNew = Worksheets("°í°´").Range("A10000").End(xlUp).Offset(1)
+    
+    With rNew
+        .Offset(0, 0).Value = Range("E4").Value
+        .Offset(0, 1).Value = Range("K4").Value
+        .Offset(0, 2).Value = Range("E6").Value
+        .Offset(0, 3).Value = Range("E8").Value
+        .Offset(0, 4).Value = Range("E10").Value
+        .Offset(0, 5).Value = Range("I6").Value
+        .Offset(0, 6).Value = Range("I8").Value
+        .Offset(0, 7).Value = Range("I10").Value
+    End With
+
+End Sub

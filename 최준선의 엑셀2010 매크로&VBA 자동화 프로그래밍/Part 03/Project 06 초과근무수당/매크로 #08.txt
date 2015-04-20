@@ -1,0 +1,36 @@
+Sub 초과근무시간계산()
+
+    Dim sMsg As String
+    Dim r근태내역 As Range, r셀 As Range
+    Dim i선택년 As Integer, i선택월 As Integer
+    Dim d정규출근시간 As Date, d정규퇴근시간 As Date, d야간근무시간 As Date
+    Dim i30분 As Integer
+    Dim i주5일 As Integer, i주6일 As Integer, i격주 As Integer, i홀수주 As Integer
+
+    If 옵션표확인 = False Then
+        sMsg = "옵션표의 근무형태와 주말 선택 옵션이 맞지 않으니 확인해 주세요!"
+        MsgBox sMsg, vbCritical + vbOKOnly, "옵션표"
+        Exit Sub
+    End If
+
+    Set r근태내역 = Worksheets("근태기록").UsedRange
+    
+    i선택년 = Range("연도").Value
+    i선택월 = Range("월").Value
+    d정규출근시간 = Range("출근시간").Value
+    d정규퇴근시간 = Range("퇴근시간").Value
+    d야간근무시간 = Range("야간근무시간").Value
+            
+    With ActiveSheet
+        i30분 = .Shapes("opt30분").ControlFormat.Value
+        i주5일 = .Shapes("opt주5일").ControlFormat.Value
+        i주6일 = .Shapes("opt주6일").ControlFormat.Value
+        i격주 = .Shapes("opt격주").ControlFormat.Value
+        i홀수주 = IIf(.Shapes("chk홀수주휴무").ControlFormat.Value = xlOn, 1, 0)
+    End With
+    
+    Worksheets("근태기록").Columns("E:G").ClearContents
+    
+    
+
+End Sub

@@ -1,0 +1,27 @@
+Sub 주말체크()
+    
+    Dim sMsg As String
+    
+    If ActiveSheet.Shapes("opt주6일").ControlFormat.Value = xlOn Then
+    
+        If 주말선택요일수 > 1 Then
+        
+            sMsg = "주 6일 근무 사업장의 주말은 하루를 초과할 수 없습니다."
+            MsgBox sMsg, vbCritical + vbOKOnly, "주말 선택"
+            ActiveSheet.Shapes(Application.Caller).ControlFormat.Value = xlOff
+        
+        End If
+    
+    Else
+        
+        If 주말선택요일수 > 2 Then
+        
+            sMsg = "주 5일, 격주 휴무 사업장의 주말은 이틀을 초과할 수 없습니다."
+            MsgBox sMsg, vbCritical + vbOKOnly, "주말 선택"
+            ActiveSheet.Shapes(Application.Caller).ControlFormat.Value = xlOff
+        
+        End If
+        
+    End If
+
+End Sub

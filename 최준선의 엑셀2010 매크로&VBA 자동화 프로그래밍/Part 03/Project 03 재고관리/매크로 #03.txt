@@ -1,0 +1,21 @@
+Sub 제품추출및정렬()
+
+    Dim r원본 As Range
+    Dim r조건 As Range
+    Dim r복사 As Range
+    
+    Set r원본 = Range("제품[#All]")
+    Set r조건 = Range("_1stCriteria").CurrentRegion
+    Set r복사 = Range("_1stCopyTo")
+    
+    r복사.CurrentRegion.Borders.LineStyle = xlNone
+    r원본.AdvancedFilter Action:=xlFilterCopy, CriteriaRange:=r조건, CopyToRange:=r복사
+    
+    Set r복사 = Range(r복사, r복사.End(xlDown).Offset(, 3))
+    
+    With r복사
+        .Sort Key1:=.Columns(1), Order1:=xlAscending, Header:=xlGuess
+        .CurrentRegion.Borders.LineStyle = xlDot
+    End With
+
+End Sub

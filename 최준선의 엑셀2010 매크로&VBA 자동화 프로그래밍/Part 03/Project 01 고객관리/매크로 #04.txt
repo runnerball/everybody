@@ -1,0 +1,28 @@
+Sub ¼¿ÀÌµ¿¼ø¼­()
+    
+    Dim n As Name
+    Dim i As Integer
+
+    On Error Resume Next
+        
+        Set n = ActiveCell.Name
+    
+        If Err = 0 Then
+        
+            If Left(n.Name, 5) = "Input" Then
+            
+                i = Int(Right(n.Name, 1))
+                
+                If i = 8 Then
+                    ThisWorkbook.Names("Input1").RefersToRange.Activate
+                Else
+                    ThisWorkbook.Names("Input" & i + 1).RefersToRange.Activate
+                End If
+
+            End If
+            
+        End If
+
+    On Error GoTo 0
+
+End Sub

@@ -1,0 +1,5 @@
+Function 기존내역존재(연 As Integer, 월 As Integer) As Boolean
+
+    기존내역존재 = WorksheetFunction.CountIfs(Range("근태내역[연]"), 연, Range("근태내역[월]"), 월) > 0
+
+End Function

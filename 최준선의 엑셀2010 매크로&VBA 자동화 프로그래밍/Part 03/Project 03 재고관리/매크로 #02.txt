@@ -1,0 +1,5 @@
+Private Sub Worksheet_Activate()
+
+    Range("_1stCriteria").Validation.Modify Type:=xlValidateList, Formula1:=분류항목
+
+End Sub

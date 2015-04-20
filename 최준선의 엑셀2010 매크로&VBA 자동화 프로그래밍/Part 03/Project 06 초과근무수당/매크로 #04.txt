@@ -1,0 +1,18 @@
+Function 주말선택요일수() As Integer
+
+    Dim o확인란 As Shape
+    Dim i As Integer
+
+    For Each o확인란 In ActiveSheet.Shapes
+    
+        If Left(o확인란.Name, 3) = "day" Then
+            If o확인란.ControlFormat.Value = xlOn Then
+                i = i + 1
+            End If
+        End If
+    
+    Next
+
+    주말선택요일수 = i
+
+End Function

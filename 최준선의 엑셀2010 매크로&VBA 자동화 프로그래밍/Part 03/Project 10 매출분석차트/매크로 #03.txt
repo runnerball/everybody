@@ -1,0 +1,18 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    Dim r날짜범위 As Range
+    
+    Set r날짜범위 = Union(Range("사용자지정_시작일"), Range("사용자지정_종료일"))
+
+    If Target.Count = 1 Then
+    
+        If Not Intersect(Target, r날짜범위) Is Nothing Then
+        
+            ActiveSheet.Shapes("opt사용자지정").ControlFormat.Value = True
+            Call 차트원본테이블구성
+                    
+        End If
+        
+    End If
+
+End Sub

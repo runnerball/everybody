@@ -1,0 +1,8 @@
+Private Sub Worksheet_Activate()
+
+    On Error Resume Next
+        ActiveSheet.ListObjects("금전출납부").Range.Cells(1).Select
+        ActiveSheet.ShowAllData
+    On Error GoTo 0
+
+End Sub

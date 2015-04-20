@@ -1,0 +1,42 @@
+Sub 차트생성()
+
+    Dim yn판매수량 As Boolean
+    Dim yn매출 As Boolean
+    Dim r원본테이블 As Range
+
+    Application.ScreenUpdating = False
+    
+        On Error Resume Next
+            ActiveSheet.ChartObjects(1).Delete
+        On Error GoTo 0
+    
+        yn판매수량 = (ActiveSheet.Shapes("chk판매수량").ControlFormat.Value = xlOn)
+        yn매출 = (ActiveSheet.Shapes("chk매출").ControlFormat.Value = xlOn)
+        
+        Set r원본테이블 = Worksheets("집계").Range("원본데이터시작").CurrentRegion
+            
+        Select Case True
+            Case yn판매수량 = False And yn매출 = True
+                Set r원본테이블 = Union(r원본테이블.Columns("A"), r원본테이블.Columns("C"))
+            Case yn판매수량 = True And yn매출 = False
+                Set r원본테이블 = r원본테이블.Columns("A:B")
+        End Select
+
+        If r원본테이블.Rows.Count > 1 Then
+        
+            Charts.Add
+            
+            With ActiveChart
+                .SetSourceData Source:=r원본테이블
+                .Location Where:=xlLocationAsObject, Name:="매출분석"
+            End With
+                    
+            Call 차트위치조정
+            Call X축레이블간격자동설정(r원본테이블)
+            Call 차트서식설정
+                    
+        End If
+        
+    Application.ScreenUpdating = True
+            
+End Sub

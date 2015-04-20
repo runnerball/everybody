@@ -1,0 +1,17 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    If Target.CountLarge = 1 Then
+
+        If Target.Column = 5 Then
+    
+            If IsNumeric(Target.Value) Then
+            
+                i수정전잔액 = Target.Value
+            
+            End If
+        
+        End If
+        
+    End If
+    
+End Sub

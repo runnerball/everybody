@@ -1,0 +1,24 @@
+Sub 합계및정렬()
+
+    Dim r추출 As Range
+    Dim r고유 As Range
+    Dim cell As Range
+    
+    Set r추출 = Range("E6", Range("G10000").End(xlUp))
+    Set r고유 = Range("I7", Range("I10000").End(xlUp))
+
+        r고유.Copy
+        r고유.Offset(, 1).Resize(r고유.Rows.Count, 2).PasteSpecial xlPasteFormats
+        
+        Application.CutCopyMode = False
+        
+        For Each cell In r고유.Cells
+            cell.Offset(, 1).Value = WorksheetFunction.SumIf(r추출.Columns(1), cell, r추출.Columns(2))
+            cell.Offset(, 2).Value = WorksheetFunction.SumIf(r추출.Columns(1), cell, r추출.Columns(3))
+        Next
+
+        With Range("I6", Range("K10000").End(xlUp))
+            .Sort Key1:=.Columns(2), Order1:=xlDescending
+        End With
+
+End Sub

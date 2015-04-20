@@ -1,0 +1,51 @@
+Private Sub btn검색_Click()
+
+    Dim r전체직원 As Range
+    Dim r찾은이름 As Range
+    Dim r레코드 As Range
+    Dim cell As Range
+    Dim x As Integer, y As Integer
+    Dim s키워드 As String
+    Dim s첫번째위치 As String
+    Dim vList() As Variant
+
+    s키워드 = txt검색.Value
+
+    If Len(s키워드) > 0 Then
+    
+        Set r전체직원 = Range("직원").Columns(2)
+        Set r찾은이름 = r전체직원.Find(What:=s키워드, LookAt:=xlPart)
+        
+        If Not r찾은이름 Is Nothing Then
+        
+            s첫번째위치 = r찾은이름.Address
+            
+            Do
+                
+                ReDim Preserve vList(7, x)
+                Set r레코드 = r찾은이름.Offset(, -1).Resize(1, 7)
+                
+                For Each cell In r레코드.Cells
+                    vList(y, x) = cell.Value
+                    y = y + 1
+                Next
+                
+                x = x + 1
+                y = 0
+                
+                Set r찾은이름 = r전체직원.FindNext(r찾은이름)
+                
+            Loop While Not r찾은이름 Is Nothing And r찾은이름.Address <> s첫번째위치
+            
+            lst직원.Column = vList
+                        
+        Else
+            
+            MsgBox "검색 결과가 존재하지 않습니다."
+            lst직원.Clear
+                
+        End If
+        
+    End If
+
+End Sub

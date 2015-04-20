@@ -1,0 +1,21 @@
+Sub ÀÔ·Â()
+
+    Dim rNew As Range
+    Dim n As Name
+    Dim x As Integer
+    
+    Set rNew = Worksheets("°í°´").Range("A10000").End(xlUp).Offset(1)
+    
+    For Each n In ThisWorkbook.Names
+        
+        If Left(n.Name, 5) = "Input" Then
+        
+            rNew.Offset(0, x).Value = n.RefersToRange.Value
+            n.RefersToRange.Value = ""
+            x = x + 1
+            
+        End If
+        
+    Next
+
+End Sub

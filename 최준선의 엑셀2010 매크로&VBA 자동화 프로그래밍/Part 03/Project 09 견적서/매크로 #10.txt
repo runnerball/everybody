@@ -1,0 +1,5 @@
+Private Sub Worksheet_Deactivate()
+
+    Worksheets("°ßÀû¼­").Visible = xlSheetVeryHidden
+
+End Sub

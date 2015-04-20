@@ -1,0 +1,27 @@
+Private Sub txt주민등록번호_AfterUpdate()
+
+    Dim s주민등록번호 As String
+    
+    s주민등록번호 = txt주민등록번호.Value
+    
+    If Len(s주민등록번호) = 14 And InStr(1, s주민등록번호, "-") > 0 Then
+    
+        opt남.Value = (Mid(s주민등록번호, 8, 1) Mod 2 = 1)
+        opt여.Value = (Mid(s주민등록번호, 8, 1) Mod 2 = 0)
+        
+        txt나이.SetFocus
+        
+    Else
+    
+        MsgBox "잘못된 주민등록번호입니다."
+        
+        With txt주민등록번호
+            .Value = ""
+            opt남.Value = False
+            opt여.Value = False
+            .SetFocus
+        End With
+    
+    End If
+
+End Sub

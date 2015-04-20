@@ -1,0 +1,14 @@
+Sub 고유항목추출()
+
+    Dim r원본표 As Range
+    
+    Set r원본표 = Range("E6", Range("E10000").End(xlUp))
+    
+        With Range("I7", Range("K7").End(xlDown))
+            .ClearContents
+            .ClearFormats
+        End With
+        
+        r원본표.AdvancedFilter Action:=xlFilterCopy, CriteriaRange:="", CopyToRange:=Range("I6"), Unique:=True
+        
+End Sub

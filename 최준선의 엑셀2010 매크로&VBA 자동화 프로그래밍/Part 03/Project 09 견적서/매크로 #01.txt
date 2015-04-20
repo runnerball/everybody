@@ -1,0 +1,18 @@
+Sub 의뢰자처리()
+
+    Dim s옵션단추 As String
+    Dim x As Integer
+    
+    s옵션단추 = ActiveSheet.Shapes(Application.Caller).TextFrame.Characters.Text
+
+    If s옵션단추 = "기존" Then
+    
+    
+    
+    Else
+    
+    
+    
+    End If
+
+End Sub

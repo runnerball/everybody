@@ -1,0 +1,5 @@
+Private Sub Worksheet_Activate()
+
+    Application.OnKey "~", "셀이동순서"
+
+End Sub

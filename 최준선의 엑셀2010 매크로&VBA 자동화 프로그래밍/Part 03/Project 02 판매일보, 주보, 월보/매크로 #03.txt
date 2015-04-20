@@ -1,0 +1,11 @@
+Sub 데이터추출()
+
+    Dim r원본표 As Range
+    
+    Set r원본표 = Worksheets("거래내역").Cells(1).CurrentRegion
+    
+        Range("E7", Range("G7").End(xlDown)).ClearFormats
+        r원본표.AdvancedFilter Action:=xlFilterCopy, CriteriaRange:=Range("B6:C7"), CopyToRange:=Range("E6:G6")
+
+
+End Sub

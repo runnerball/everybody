@@ -1,0 +1,10 @@
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+
+    If CloseMode = vbFormControlMenu Then
+    
+        MsgBox "<닫기> 버튼을 눌러 종료하세요!"
+        Cancel = True
+    
+    End If
+
+End Sub

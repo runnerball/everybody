@@ -1,0 +1,36 @@
+Sub ±Þ¿©¸í¼¼¼­¹ß¼Û(r±Þ¿©´ëÀå As Range, r´ë»óÀÚ As Range)
+
+    Dim ¼¿ As Range
+    Dim y As Integer
+    
+    For Each ¼¿ In r´ë»óÀÚ.Columns(1).Cells
+    
+        If ¼¿.Row > 1 Then
+    
+            Range(¡°ºÎ¼­¡±).Value = ¼¿.Offset(, 1).Value
+            Range(¡°Á÷À§¡±).Value = ¼¿.Offset(, 2).Value
+            Range(¡°ÀÌ¸§¡±).Value = ¼¿.Offset(, 3).Value
+            Range(¡°±Þ¿©ÃÑ¾×¡±).Value = ¼¿.Offset(, 10).Value
+            Range(¡°°øÁ¦ÃÑ¾×¡±).Value = ¼¿.Offset(, 18).Value
+            Range(¡°±âº»±Þ¡±).Value = ¼¿.Offset(, 6).Value
+            Range(¡°Á÷Ã¥¼ö´ç¡±).Value = ¼¿.Offset(, 7).Value
+            Range(¡°±Ù¼Ó¼ö´ç¡±).Value = ¼¿.Offset(, 8).Value
+            Range(¡°±Þ½Ä¼ö´ç¡±).Value = ¼¿.Offset(, 9).Value
+            Range(¡°°©±Ù¼¼¡±).Value = ¼¿.Offset(, 12).Value
+            Range(¡°ÁÖ¹Î¼¼¡±).Value = ¼¿.Offset(, 13).Value
+            Range(¡°±¹¹Î¿¬±Ý¡±).Value = ¼¿.Offset(, 14).Value
+            Range(¡°°í¿ëº¸Çè¡±).Value = ¼¿.Offset(, 15).Value
+            Range(¡°°Ç°­º¸Çè¡±).Value = ¼¿.Offset(, 16).Value
+            Range(¡°°¡ºÒ±Ý¡±).Value = ¼¿.Offset(, 17).Value
+
+            ' 1´Ü°è : ÆÄÀÏ»ý¼º
+            
+            ' 2´Ü°è : ÀÌ¸ÞÀÏ ¹ß¼Û
+                        
+            ' 3´Ü°è : ÆÄÀÏ »èÁ¦
+                
+        End If
+        
+    Next
+
+End Sub

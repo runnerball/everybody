@@ -1,0 +1,21 @@
+Sub 기존내역삭제(연 As Integer, 월 As Integer)
+
+    Dim r근태내역 As Range
+
+    Set r근태내역 = Range("근태내역[#All]")
+    
+    With r근태내역
+        .AutoFilter Field:=3, Criteria1:=연
+        .AutoFilter Field:=4, Criteria1:=월
+    End With
+    
+        Application.DisplayAlerts = False
+            Range("근태내역[#Data]").SpecialCells(xlCellTypeVisible).Delete
+        Application.DisplayAlerts = True
+    
+    With r근태내역
+        .AutoFilter Field:=3
+        .AutoFilter Field:=4
+    End With
+        
+End Sub

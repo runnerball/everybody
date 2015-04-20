@@ -1,0 +1,20 @@
+Sub 급여대장인쇄()
+
+    If ActiveSheet.Shapes("opt조건").ControlFormat.Value = xlOn Then
+        Call 필터적용
+    End If
+    
+    With Worksheets("급여대장")
+    
+        With .PageSetup
+            .Orientation = xlLandscape
+            .Zoom = False
+            .FitToPagesWide = 1
+            .FitToPagesTall = 1
+        End With
+        
+        .PrintOut
+        
+    End With
+    
+End Sub

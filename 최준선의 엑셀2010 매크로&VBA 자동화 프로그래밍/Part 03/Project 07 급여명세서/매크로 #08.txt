@@ -1,0 +1,19 @@
+Sub 급여명세서파일만들기(s파일명 As String)
+
+    Application.ScreenUpdating = False
+    
+        If Dir(s파일명) <> "" Then Kill s파일명
+
+        Worksheets("급여명세서").Copy
+                    
+        With ActiveWorkbook
+            
+            .Worksheets(1).UsedRange.Value = .Worksheets(1).UsedRange.Value
+            .SaveAs Filename:=s파일명, FileFormat:=51
+            .Close Savechanges:=False
+        
+        End With
+            
+    Application.ScreenUpdating = True
+
+End Sub

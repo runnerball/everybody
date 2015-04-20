@@ -1,0 +1,13 @@
+Function 绒老咯何(免辟老 As Date) As Boolean
+
+    Dim 绒老 As Range
+    
+    Set 绒老 = Worksheets("绒老").UsedRange.Columns(1)
+    
+    If Not 绒老.Find(What:=免辟老) Is Nothing Then
+        绒老咯何 = True
+    Else
+        绒老咯何 = False
+    End If
+        
+End Function

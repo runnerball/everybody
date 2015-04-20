@@ -1,0 +1,28 @@
+Sub 직원표시하기()
+
+    Dim r입사일 As Range
+    Dim cell As Range
+    Dim r근태기록 As Range
+    Dim d선택날짜 As Date
+    Dim i As Integer
+    
+    Set r입사일 = Range("직원").Columns(3)
+    d선택날짜 = DateSerial(Range("연").Value, Range("월").Value, 1)
+    
+    On Error Resume Next
+        Range("근태관리대장[#Data]").Delete Shift:=xlUp
+    On Error GoTo 0
+    
+    For Each cell In r입사일.Cells
+    
+        If cell.Value <= d선택날짜 Then
+            If cell.Offset(, 1).Value = 0 Or cell.Offset(, 1).Value >= d선택날짜 Then
+                Set r근태기록 = Range("근태관리대장[#Data]").Cells(1)
+                r근태기록.Offset(i).Resize(1, 2) = Array(cell.Offset(, -2).Value, cell.Offset(, -1).Value)
+                i = i + 1
+            End If
+        End If
+    
+    Next
+
+End Sub

@@ -1,0 +1,47 @@
+Sub 차트서식설정()
+
+    Dim i막대 As Integer
+
+    With ActiveChart
+        
+        .PlotBy = xlColumns
+        
+        .HasTitle = True
+        .ChartTitle.Characters.Text = "매출 분석 차트"
+        .ChartTitle.Font.Size = 14
+                    
+        .HasLegend = True
+        .Legend.Position = xlBottom
+                
+        Select Case .SeriesCollection.Count
+            Case 1
+                i막대 = 1
+            Case 2
+                .SeriesCollection(1).AxisGroup = 2
+                .SeriesCollection(1).ChartType = xlLineMarkers
+        
+                i막대 = 2
+        End Select
+        
+        With .SeriesCollection(i막대).Format.Fill
+            .Visible = msoTrue
+            .ForeColor.ObjectThemeColor = msoThemeColorText1
+            .ForeColor.TintAndShade = 0.3399999738
+            .ForeColor.Brightness = 0.25
+            .BackColor.ObjectThemeColor = msoThemeColorText1
+            .BackColor.TintAndShade = 0.7649999857
+            .BackColor.Brightness = 0.25
+            .TwoColorGradient msoGradientHorizontal, 1
+        End With
+        
+        .ChartGroups(1).GapWidth = 50
+        .ChartStyle = 1
+        
+        With .Axes(xlValue).MajorGridlines.Format.Line
+            .Visible = msoTrue
+            .DashStyle = msoLineSysDash
+        End With
+        
+    End With
+            
+End Sub

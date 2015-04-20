@@ -1,0 +1,70 @@
+Function 林富咯何(免辟老 As Date) As Boolean
+
+    Dim o犬牢鄂 As Shape
+    Dim s林富() As String
+    Dim i As Integer
+    Dim yn林富 As Boolean
+    Dim s夸老 As String
+    Dim d捞锅崔1老 As Date
+    Dim i林 As Integer
+
+    ' 函荐 蔼阑 历厘钦聪促.
+
+    s夸老 = Format(免辟老, "aaa")
+    d捞锅崔1老 = 免辟老 - Day(免辟老) + 1
+    i林 = Int(Format(免辟老, "ww", vbMonday)) - Int(Format(d捞锅崔1老, "ww", vbMonday)) + 1
+    yn林富 = False
+
+    ' 可记钎狼 蔼阑 佬绰促.
+
+    For Each o犬牢鄂 In ActiveSheet.Shapes
+        If Left(o犬牢鄂.Name, 3) = "day" Then
+            If o犬牢鄂.ControlFormat.Value = xlOn Then
+                ReDim Preserve s林富(i)
+                s林富(i) = Right(o犬牢鄂.Name, 1)
+                i = i + 1
+            End If
+        End If
+    Next
+
+    ' 林富 咯何甫 犬牢茄促.
+
+    For i = 0 To UBound(s林富)
+
+        Select Case True
+        
+            Case i林6老 = xlOn
+                
+                If s夸老 = s林富(0) Then
+                    yn林富 = True
+                    Exit For
+                End If
+            
+            Case i林5老 = xlOn
+            
+                If s夸老 = s林富(i) Then
+                    yn林富 = True
+                    Exit For
+                End If
+            
+            Case i拜林 = xlOn
+            
+                If i林 Mod 2 = i圈荐林 Then
+                    If s夸老 = s林富(i) Then
+                        yn林富 = True
+                        Exit For
+                    End If
+                Else
+                    If s夸老 = s林富(1) Then
+                        yn林富 = True
+                        Exit For
+                    End If
+                End If
+            
+        End Select
+
+    Next
+
+    林富咯何 = yn林富
+
+End Function

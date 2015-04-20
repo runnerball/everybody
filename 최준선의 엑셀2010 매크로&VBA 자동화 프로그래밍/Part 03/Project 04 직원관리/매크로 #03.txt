@@ -1,0 +1,35 @@
+Private Sub btn편집_Click()
+
+    Dim i선택 As Integer
+    Dim s사진 As String
+
+    With lst직원
+    
+        i선택 = .ListIndex
+
+        If i선택 > -1 Then
+            
+            s사진 = ThisWorkbook.Path & "\Picture\" & .List(i선택, 0) & ".jpg"
+            
+            If Dir(s사진) = "" Then s사진 = ThisWorkbook.Path & "\Picture\Default.jpg"
+            
+            img사진.Picture = LoadPicture(Filename:=s사진)
+            txt사번.Value = .List(i선택, 0)
+            txt이름.Value = .List(i선택, 1)
+            cmb직위.Value = .List(i선택, 2)
+            txt주민등록번호.Value = .List(i선택, 3)
+
+            If .List(i선택, 4) = "남" Then
+                opt남.Value = True
+            Else
+                opt여.Value = True
+            End If
+
+            txt나이.Value = .List(i선택, 5)
+            txt생년월일.Value = Format(.List(i선택, 6), "yyyy-mm-dd")
+            
+        End If
+
+    End With
+
+End Sub

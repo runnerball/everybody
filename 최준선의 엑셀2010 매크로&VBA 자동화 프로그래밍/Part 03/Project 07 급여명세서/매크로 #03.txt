@@ -1,0 +1,14 @@
+Sub 필터적용()
+
+    Dim r원본 As Range, r조건 As Range
+    
+    Set r원본 = Range("급여대장[#All]")
+    Set r조건 = Range("조건표")
+        
+    If WorksheetFunction.CountA(r조건) > 3 Then
+        
+        r원본.AdvancedFilter Action:=xlFilterInPlace, CriteriaRange:=r조건, CopyToRange:=""
+            
+    End If
+    
+End Sub

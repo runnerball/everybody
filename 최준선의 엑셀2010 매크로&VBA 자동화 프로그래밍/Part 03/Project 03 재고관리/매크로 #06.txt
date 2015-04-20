@@ -1,0 +1,22 @@
+Sub 발주리스트추출및정렬()
+
+    Dim r원본 As Range
+    Dim r조건 As Range
+    Dim r복사 As Range
+    
+    Set r원본 = Range("제품[#All]")
+    Set r조건 = Range("_2ndCriteria").CurrentRegion
+    Set r복사 = Range("_2ndCopyTo").Resize(1, 3)
+    
+        r복사.CurrentRegion.Borders.LineStyle = xlNone
+        
+        r원본.AdvancedFilter Action:=xlFilterCopy, CriteriaRange:=r조건, CopyToRange:=r복사
+        
+        Set r복사 = Range(Range("_2ndCopyTo"), r복사.End(xlDown).Offset(2))
+
+        With r복사
+            .Sort Key1:=.Columns(2), Order1:=xlAscending, Header:=xlGuess
+            .CurrentRegion.Borders.LineStyle = xlDot
+        End With
+
+End Sub

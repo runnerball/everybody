@@ -1,0 +1,10 @@
+Sub Main()
+
+	Call 데이터추출
+	Call 고유항목추출
+	Call 합계및정렬
+	Call 서식인쇄
+	
+	Range("Template").Activate
+
+End Sub

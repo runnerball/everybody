@@ -1,0 +1,17 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    If Not Intersect(Target, Range("D21:D40")) Is Nothing Then
+        
+        If Target.Columns.Count = 6 And Target.MergeCells Then
+            
+            If Len(Target.Offset(, -2).Value) > 0 Then
+                
+                UserForm1.Show
+            
+            End If
+        
+        End If
+    
+    End If
+
+End Sub

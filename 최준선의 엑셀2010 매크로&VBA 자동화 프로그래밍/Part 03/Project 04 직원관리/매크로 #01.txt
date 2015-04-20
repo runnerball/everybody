@@ -1,0 +1,19 @@
+Private Sub UserForm_Initialize()
+
+    UserForm1.Caption = ActiveSheet.Name
+    
+    txt사번.Value = Cells(Rows.Count, 2).End(xlUp).Value + 1
+
+    With lst직원
+        .ColumnCount = 7
+        .ColumnWidths = "1cm;2cm;1cm;3cm;1cm;1cm;2cm"
+    End With
+
+    With cmb직위
+        .AddItem "부장"
+        .AddItem "과장"
+        .AddItem "대리"
+        .AddItem "사원"
+    End With
+
+End Sub
